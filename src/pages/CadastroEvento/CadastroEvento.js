@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
   Box,
   Card,
@@ -16,37 +16,37 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import { FaLeaf } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { criarEvento } from "../../services/evento/evento";
+} from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { FaLeaf } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { criarEvento } from '../../services/evento/evento'
 
 const CadastroEvento = () => {
-  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const usuario = JSON.parse(localStorage.getItem('usuario'))
   const [formData, setFormData] = useState({
-    nome: "",
-    descricao: "",
-    data: "",
-    cidade: "",
-    estado: "",
+    nome: '',
+    descricao: '',
+    data: '',
+    cidade: '',
+    estado: '',
     organizacaoId: usuario.id,
-  });
-  const navigate = useNavigate();
+  })
+  const navigate = useNavigate()
 
   async function cadastrar() {
     try {
-      await criarEvento(formData);
-      navigate("/");
-      console.log("Cadastrado com sucesso");
+      await criarEvento(formData)
+      navigate('/eventos')
+      console.log('Cadastrado com sucesso')
     } catch (e) {
-      console.log("Erro ao cadastrar", e);
+      console.log('Erro ao cadastrar', e)
     }
   }
 
   if (!usuario?.cnpj) {
-    navigate("/");
-    return;
+    navigate('/')
+    return
   }
   return (
     <>
@@ -68,8 +68,8 @@ const CadastroEvento = () => {
         <Box display="flex" alignItems="center" gap="2rem">
           {usuario?.cnpj && (
             <Box
-              onClick={() => navigate("/eventos")}
-              _hover={{ cursor: "pointer", color: "quaternary" }}
+              onClick={() => navigate('/eventos')}
+              _hover={{ cursor: 'pointer', color: 'quaternary' }}
               as="span"
               color="primary"
               fontSize="md"
@@ -80,7 +80,7 @@ const CadastroEvento = () => {
           <Menu>
             <MenuButton
               color="primary"
-              _hover={{ cursor: "pointer", color: "quaternary" }}
+              _hover={{ cursor: 'pointer', color: 'quaternary' }}
               as={Text}
               rightIcon={<ChevronDownIcon />}
             >
@@ -89,8 +89,8 @@ const CadastroEvento = () => {
             <MenuList>
               <MenuItem
                 onClick={() => {
-                  localStorage.removeItem("usuario");
-                  navigate("/");
+                  localStorage.removeItem('usuario')
+                  navigate('/')
                 }}
               >
                 Sair
@@ -189,7 +189,7 @@ const CadastroEvento = () => {
                   color="primary"
                   width="100%"
                 >
-                  Criar conta
+                  Criar Evento
                 </Button>
               </Box>
             </Stack>
@@ -197,7 +197,7 @@ const CadastroEvento = () => {
         </Card>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default CadastroEvento;
+export default CadastroEvento
