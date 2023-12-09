@@ -20,20 +20,18 @@ const ModalEvento = ({ isOpen, onClose, title, image, description }) => {
       <ModalContent bg="primary" width="40rem">
         <ModalHeader>{title}</ModalHeader>
         <ModalCloseButton />
-        //Área com imagem e descrição do evento
         <ModalBody>
           <Container display="flex" width="26rem" flexDirection="column">
             <Image src={image} width="100%" />
             <Text mt={4}>{description}</Text>
           </Container>
         </ModalBody>
-        //Botões de fechar e participar do evento
         <ModalFooter>
           <Button bg="quaternary" color="primary" mr={3} onClick={onClose}>
-            Close
+            Fechar
           </Button>
           <Button bg="tertiary" color="primary">
-            Participate
+            Participar
           </Button>
         </ModalFooter>
       </ModalContent>

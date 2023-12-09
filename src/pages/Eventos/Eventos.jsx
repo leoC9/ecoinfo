@@ -79,7 +79,6 @@ const Eventos = () => {
 
   return (
     <>
-      //Navbar do site
       <Box
         display="flex"
         height="3.6rem"
@@ -110,7 +109,6 @@ const Eventos = () => {
           </MenuList>
         </Menu>
       </Box>
-      //Conteudo da tela
       <Container
         mt={5}
         w="100%"
@@ -134,7 +132,6 @@ const Eventos = () => {
           alignItems="center"
           justifyContent="center"
         >
-          //Listagem de eventos mapeados
           {event.map((data, i) => (
             <Box
               key={i}
@@ -182,7 +179,6 @@ const Eventos = () => {
             </Box>
           ))}
         </Container>
-        //Modal de evento
         <ModalEvento
           isOpen={isOpen}
           onClose={onClose}

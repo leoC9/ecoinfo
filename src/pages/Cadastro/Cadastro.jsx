@@ -18,14 +18,12 @@ import { FaLeaf } from "react-icons/fa";
 const Cadastro = () => {
   return (
     <>
-      //Logo do Ecoinfo
       <Box pt={20} pl={28} cursor="default" display="flex" alignItems="center">
         <Icon as={FaLeaf} color="primary" fontSize="2rem" />
         <Box mt={1} as="span" ml="2" color="primary" fontSize="1.8rem">
           Ecoinfo
         </Box>
       </Box>
-      //Card de cadastro
       <Container py="5rem" maxWidth="512px" width="100%">
         <Card bg="primary" p="2rem">
           <CardHeader>
@@ -36,7 +34,6 @@ const Cadastro = () => {
               Crie sua conta gratuita
             </Text>
           </CardHeader>
-          //Área de campos de texto para o cadastro
           <CardBody>
             <Stack divider={<StackDivider />} spacing="4">
               <Box>
@@ -76,7 +73,6 @@ const Cadastro = () => {
                   placeholder="Insira sua senha"
                 />
               </Box>
-              //Botão de cadastro
               <Box>
                 <Button background="tertiary" color="primary" width="100%">
                   Criar conta

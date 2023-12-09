@@ -21,14 +21,12 @@ import { FaLeaf } from "react-icons/fa";
 const Home = () => {
   return (
     <>
-      //Logo do Ecoinfo
       <Box pt={20} pl={28} cursor="default" display="flex" alignItems="center">
         <Icon as={FaLeaf} color="primary" fontSize="2rem" />
         <Box mt={1} as="span" ml="2" color="primary" fontSize="1.8rem">
           Ecoinfo
         </Box>
       </Box>
-      //Card de login
       <Container py="7rem" maxWidth="512px" width="100%">
         <Card bg="primary" p="2rem">
           <CardHeader>
@@ -39,7 +37,6 @@ const Home = () => {
               Continue e transforme o mundo com Ecoinfo
             </Text>
           </CardHeader>
-          //Área de campos de texto para o login
           <CardBody>
             <Stack divider={<StackDivider />} spacing="4">
               <Box>
@@ -63,14 +60,12 @@ const Home = () => {
                   placeholder="Insira sua senha"
                 />
               </Box>
-              //Botão de login
               <Box>
                 <Button background="tertiary" color="primary" width="100%">
                   Login
                 </Button>
               </Box>
             </Stack>
-            //Link para cadastro
             <Flex py="5">
               <Text color="tertiary " pt="2" fontSize="sm">
                 Não tem conta?
