@@ -15,10 +15,13 @@ import {
   Flex,
   Icon,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { FaLeaf } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { logarUsuario } from "../../services/usuario/usuario";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Box pt={20} pl={28} cursor="default" display="flex" alignItems="center">
@@ -31,55 +34,32 @@ const Home = () => {
         <Card bg="primary" p="2rem">
           <CardHeader>
             <Heading color="tertiary" size="md">
-              Login
+              Acesse o Ecoinfo
             </Heading>
-            <Text color="tertiary " pt="2" fontSize="sm">
-              Continue e transforme o mundo com Ecoinfo
-            </Text>
           </CardHeader>
           <CardBody>
             <Stack divider={<StackDivider />} spacing="4">
               <Box>
-                <Heading color="tertiary" size="xs">
-                  Usuário
-                </Heading>
-                <Input
-                  color="tertiary"
-                  my="1"
-                  placeholder="Insira seu nome de usuário"
-                />
+                <Button
+                  onClick={() => navigate("/loginUsuario")}
+                  background="tertiary"
+                  color="primary"
+                  width="100%"
+                >
+                  Entre como usuário
+                </Button>
               </Box>
               <Box>
-                <Heading color="tertiary" size="xs">
-                  Senha
-                </Heading>
-                <Input
-                  color="tertiary"
-                  my="1"
-                  type="password"
-                  placeholder="Insira sua senha"
-                />
-              </Box>
-              <Box>
-                <Button background="tertiary" color="primary" width="100%">
-                  Login
+                <Button
+                  onClick={() => navigate("/loginOrganizacao")}
+                  background="tertiary"
+                  color="primary"
+                  width="100%"
+                >
+                  Entre como organização
                 </Button>
               </Box>
             </Stack>
-            <Flex py="5">
-              <Text color="tertiary " pt="2" fontSize="sm">
-                Não tem conta?
-              </Text>
-              <Link
-                href="/cadastro"
-                ml="1"
-                color="quaternary"
-                pt="2"
-                fontSize="sm"
-              >
-                Clique aqui para criar
-              </Link>
-            </Flex>
           </CardBody>
         </Card>
       </Container>

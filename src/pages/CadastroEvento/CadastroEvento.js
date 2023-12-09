@@ -1,3 +1,4 @@
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   Card,
@@ -11,66 +12,106 @@ import {
   Text,
   Button,
   Icon,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { FaLeaf } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { cadastrarUsuario } from "../../services/usuario/usuario";
+import { criarEvento } from "../../services/evento/evento";
 
-const Cadastro = () => {
+const CadastroEvento = () => {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
   const [formData, setFormData] = useState({
     nome: "",
-    email: "",
-    senha: "",
-    cpf: "",
+    descricao: "",
+    data: "",
     cidade: "",
     estado: "",
+    organizacaoId: usuario.id,
   });
   const navigate = useNavigate();
 
   async function cadastrar() {
     try {
-      await cadastrarUsuario(formData);
+      await criarEvento(formData);
       navigate("/");
       console.log("Cadastrado com sucesso");
     } catch (e) {
       console.log("Erro ao cadastrar", e);
     }
   }
+
+  if (!usuario?.cnpj) {
+    navigate("/");
+    return;
+  }
   return (
     <>
-      <Box pt={10} pl={28} cursor="default" display="flex" alignItems="center">
-        <Icon as={FaLeaf} color="primary" fontSize="2rem" />
-        <Box mt={1} as="span" ml="2" color="primary" fontSize="1.8rem">
-          Ecoinfo
+      <Box
+        display="flex"
+        height="3.6rem"
+        width="100%"
+        px={2.5}
+        alignItems="center"
+        bg="tertiary"
+        justifyContent="space-between"
+      >
+        <Box cursor="default" display="flex" alignItems="center">
+          <Icon as={FaLeaf} color="primary" fontSize="md" />
+          <Box mt={1} as="span" ml="2" color="primary" fontSize="md">
+            Ecoinfo
+          </Box>
+        </Box>
+        <Box display="flex" alignItems="center" gap="2rem">
+          {usuario?.cnpj && (
+            <Box
+              onClick={() => navigate("/eventos")}
+              _hover={{ cursor: "pointer", color: "quaternary" }}
+              as="span"
+              color="primary"
+              fontSize="md"
+            >
+              Listagem de eventos
+            </Box>
+          )}
+          <Menu>
+            <MenuButton
+              color="primary"
+              _hover={{ cursor: "pointer", color: "quaternary" }}
+              as={Text}
+              rightIcon={<ChevronDownIcon />}
+            >
+              {usuario?.nome || usuario?.razao_social}
+            </MenuButton>
+            <MenuList>
+              <MenuItem
+                onClick={() => {
+                  localStorage.removeItem("usuario");
+                  navigate("/");
+                }}
+              >
+                Sair
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </Box>
       </Box>
-      <Container py="2rem" maxWidth="512px" width="100%">
+
+      <Container py="5rem" maxWidth="512px" width="100%">
         <Card bg="primary" p="2rem">
           <CardHeader>
             <Heading color="tertiary" size="md">
               Cadastro
             </Heading>
             <Text color="tertiary " pt="2" fontSize="sm">
-              Crie sua conta gratuita
+              Crie o evento para sua organização
             </Text>
           </CardHeader>
           <CardBody>
             <Stack divider={<StackDivider />} spacing="4">
-              <Box>
-                <Heading color="tertiary" size="xs">
-                  CPF
-                </Heading>
-                <Input
-                  value={formData.cpf}
-                  onChange={(e) =>
-                    setFormData({ ...formData, cpf: e.target.value })
-                  }
-                  color="tertiary"
-                  my="1"
-                  placeholder="Insira seu CPF"
-                />
-              </Box>
               <Box>
                 <Heading color="tertiary" size="xs">
                   Nome
@@ -82,21 +123,21 @@ const Cadastro = () => {
                   }
                   color="tertiary"
                   my="1"
-                  placeholder="Insira seu nome"
+                  placeholder="Insira o nome do evento"
                 />
               </Box>
               <Box>
                 <Heading color="tertiary" size="xs">
-                  Email
+                  Descrição
                 </Heading>
                 <Input
-                  value={formData.email}
+                  value={formData.descricao}
                   onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
+                    setFormData({ ...formData, descricao: e.target.value })
                   }
                   color="tertiary"
                   my="1"
-                  placeholder="Insira seu email"
+                  placeholder="Insira a descrição do evento"
                 />
               </Box>
               <Box>
@@ -129,17 +170,16 @@ const Cadastro = () => {
               </Box>
               <Box>
                 <Heading color="tertiary" size="xs">
-                  Senha
+                  Data
                 </Heading>
                 <Input
-                  value={formData.senha}
-                  onChange={(e) =>
-                    setFormData({ ...formData, senha: e.target.value })
-                  }
                   color="tertiary"
                   my="1"
-                  type="password"
-                  placeholder="Insira sua senha"
+                  placeholder="Insira sua data"
+                  value={formData.data}
+                  onChange={(e) =>
+                    setFormData({ ...formData, data: e.target.value })
+                  }
                 />
               </Box>
               <Box>
@@ -160,4 +200,4 @@ const Cadastro = () => {
   );
 };
 
-export default Cadastro;
+export default CadastroEvento;

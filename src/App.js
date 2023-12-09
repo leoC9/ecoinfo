@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Cadastro from "./pages/Cadastro/Cadastro";
 import Eventos from "./pages/Eventos/Eventos";
+import LoginUsuario from "./pages/LoginUsuario/LoginUsuario";
+import LoginOrganizacao from "./pages/LoginOrganizacao/LoginOrganizacao";
+import CadastroEvento from "./pages/CadastroEvento/CadastroEvento";
 
 //Definição das cores do projeto
 const theme = extendTheme({
@@ -24,8 +27,20 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path: "/loginUsuario",
+    element: <LoginUsuario />,
+  },
+  {
+    path: "/loginOrganizacao",
+    element: <LoginOrganizacao />,
+  },
+  {
     path: "/cadastro",
     element: <Cadastro />,
+  },
+  {
+    path: "/criarEvento",
+    element: <CadastroEvento />,
   },
   {
     path: "/eventos",
